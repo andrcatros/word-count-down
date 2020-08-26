@@ -9,14 +9,20 @@ function App() {
   const [wordcount, setWordcount] = useState(0);
 
   const getDivNum = () => {
-    return Math.floor(wordcountInProgress / (wordcount / 8));
+    if (wordcount) {
+      return Math.floor(wordcountInProgress / (wordcount / 8));
+    } else {
+      return "x";
+    }
   };
 
   return (
     <div className={`App gradient-divs${getDivNum()}`}>
+      <h1>Welcome to Word Countdown!</h1>
       <p>
         The background color of this page will change from red to green as you
-        get closer to your wordcount target :)
+        get closer to your target. Let those ugly browns motivate you to keep
+        writing. :)
       </p>
 
       <Options setWordcount={setWordcount} />

@@ -1,4 +1,5 @@
 import React from "react";
+import { Form, TextArea } from "semantic-ui-react";
 
 const TextInput = ({ wordcountInProgress, setWordcountInProgress }) => {
   const handleTextInput = (e) => {
@@ -6,15 +7,16 @@ const TextInput = ({ wordcountInProgress, setWordcountInProgress }) => {
     setWordcountInProgress(words.split(" ").length);
   };
 
-  const doNothing = (e) => {
-    e.preventDefault();
-  };
   return (
     <div className="TextInput">
-      <form onSubmit={doNothing}>
-        Start writing!
-        <input type="text" onChange={handleTextInput} />
-      </form>
+      <Form>
+        <TextArea
+          name="textinput"
+          style={{ minHeight: 500 }}
+          onChange={handleTextInput}
+        />
+      </Form>
+
       <p>Your current wordcount is: {wordcountInProgress}</p>
     </div>
   );
