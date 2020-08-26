@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Options = () => {
-  const [wordcount, setWordcount] = useState(0);
+const Options = ({ setWordcount }) => {
+  let target;
+
   const handleWordcount = (e) => {
-    setWordcount(e.target.value);
+    target = e.target.value;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(wordcount);
+    setWordcount(target);
+    target = 0;
   };
   return (
     <div className="Options">
@@ -17,7 +19,7 @@ const Options = () => {
         <input
           type="number"
           step="100"
-          value={wordcount}
+          value={target}
           onChange={handleWordcount}
         />
         <button type="submit">I am ready to begin</button>

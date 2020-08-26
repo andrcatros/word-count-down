@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-const TextInput = () => {
-  const [wordcountInProgress, setWordcountInProgress] = useState(0);
+const TextInput = ({ wordcountInProgress, setWordcountInProgress }) => {
   const handleTextInput = (e) => {
     const words = e.target.value;
     setWordcountInProgress(words.split(" ").length);
