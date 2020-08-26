@@ -17,12 +17,23 @@
 
 .Options input {
   margin: 5px;
+  width: 80px;
+  border-style: none;
+  font-size: 16px;
+  border-radius: 3px;
+  padding-left: 5px;
+  margin-left: 8px;
 }
 
-.Options button {
+button {
   border-style: none;
+  display: block;
   background-color: white;
+  height: 35px;
+  width: 120px;
   padding: 3px;
+  font-size: 16px;
+  border-radius: 7px;
 }
 
 textarea {
@@ -39,8 +50,8 @@ textarea {
   @for $i from 0 through $count {
     $background-color: adjust-color(
       $startColor,
-      $green: 20 * $i,
-      $red: -10 * $i
+      $green: 10 * $i,
+      $red: -5 * $i
     );
     .gradient-divs#{$i} {
       background: $background-color;
@@ -55,4 +66,4 @@ textarea {
   }
 }
 
-@include gradient-divs(8, "a", #f54542);
+@include gradient-divs(16, "a", #f54542);

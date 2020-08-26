@@ -7,13 +7,23 @@ import TextInput from "./TextInput";
 function App() {
   const [wordcountInProgress, setWordcountInProgress] = useState(0);
   const [wordcount, setWordcount] = useState(0);
+  const [isWriting, setIsWriting] = useState(false);
 
   const getDivNum = () => {
     if (wordcount) {
-      return Math.floor(wordcountInProgress / (wordcount / 8));
+      return Math.floor(wordcountInProgress / (wordcount / 16));
     } else {
       return "x";
     }
+  };
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    console.log("I am resetting everything");
+
+    setWordcountInProgress(0);
+    setWordcount(0);
+    setIsWriting(false);
   };
 
   return (
@@ -21,17 +31,27 @@ function App() {
       <h1>Welcome to Word Countdown!</h1>
       <p>
         The background color of this page will change from red to green as you
-        get closer to your target. Let those ugly browns motivate you to keep
+        get closer to your target. Let those ugly shades motivate you to keep
         writing. :)
       </p>
 
-      <Options setWordcount={setWordcount} />
-      <TextInput
-        wordcountInProgress={wordcountInProgress}
-        setWordcountInProgress={setWordcountInProgress}
-      />
+      {!isWriting && (
+        <Options setWordcount={setWordcount} setIsWriting={setIsWriting} />
+      )}
+      {isWriting && (
+        <TextInput
+          wordcountInProgress={wordcountInProgress}
+          setWordcountInProgress={setWordcountInProgress}
+        />
+      )}
 
       <p>Your target is: {wordcount}</p>
+
+      {isWriting && (
+        <button type="submit" name="reset goal" onClick={handleReset}>
+          Reset Goal
+        </button>
+      )}
     </div>
   );
 }

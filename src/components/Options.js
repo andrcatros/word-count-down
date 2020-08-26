@@ -1,6 +1,6 @@
 import React from "react";
 
-const Options = ({ setWordcount }) => {
+const Options = ({ setWordcount, setIsWriting }) => {
   let target;
 
   const handleWordcount = (e) => {
@@ -10,19 +10,21 @@ const Options = ({ setWordcount }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setWordcount(target);
+    setIsWriting(true);
     target = 0;
   };
   return (
     <div className="Options">
       <form onSubmit={handleSubmit}>
-        Your target word count:
+        Type your target word count:
         <input
           type="number"
-          step="100"
+          step="1"
           value={target}
           onChange={handleWordcount}
+          required
         />
-        <button type="submit">I am ready to begin</button>
+        <button type="submit">Write!</button>
       </form>
     </div>
   );
